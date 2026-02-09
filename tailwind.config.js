@@ -7,9 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#3B82F6', // Blue for primary actions
-        danger: '#EF4444',  // Red for alerts
-      }
+        "primary": "#2563eb",
+        "navy-dark": "#0f172a",
+        "attendance-present": "#2563eb",
+        "attendance-half": "#d97706",
+        "attendance-absent": "#dc2626",
+        "danger": "#dc2626",
+      },
+      fontFamily: {
+        "display": ["Inter", "sans-serif"]
+      },
     },
   },
   plugins: [],

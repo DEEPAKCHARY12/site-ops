@@ -1,5 +1,6 @@
 import Labor from './pages/Labor';
 import Reports from './pages/Reports';
+import Gallery from './pages/Gallery';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
@@ -12,7 +13,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="inventory" element={<div>Inventory Module (Intern 1)</div>} />
           <Route path="labor" element={<Labor />} />
-          <Route path="gallery" element={<div>Gallery Module (Intern 3)</div>} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="reports" element={<Reports />} />
         </Route>
       </Routes>

@@ -103,4 +103,74 @@
     "present": 32,
     "halfDay": 6
   }
+  ,
+  "gallery": {
+    "photos": [
+      {
+        "id": 1,
+        "url": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop",
+        "category": "Foundation",
+        "title": "Rebar reinforcement for West Wing",
+        "date": "Oct 24, 2023 • 10:45 AM",
+        "uploader": "John Doe",
+        "uploaderRole": "PM",
+        "uploaderInitials": "JD"
+      },
+      {
+        "id": 2,
+        "url": "https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?q=80&w=600&auto=format&fit=crop",
+        "category": "Overview",
+        "title": "Weekly aerial site inspection",
+        "date": "Oct 22, 2023 • 09:15 AM",
+        "uploader": "Mike Smith",
+        "uploaderRole": "Site Eng",
+        "uploaderInitials": "MS"
+      },
+      {
+        "id": 3,
+        "url": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop",
+        "category": "Finishing",
+        "title": "HVAC Duct Installation - Level 3",
+        "date": "Oct 21, 2023 • 02:30 PM",
+        "uploader": "Alex Ray",
+        "uploaderRole": "HVAC Lead",
+        "uploaderInitials": "AR"
+      },
+      {
+        "id": 4,
+        "url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop",
+        "category": "Logistics",
+        "title": "Batch 04 Structural Steel Unloading",
+        "date": "Oct 20, 2023 • 11:00 AM",
+        "uploader": "John Doe",
+        "uploaderRole": "PM",
+        "uploaderInitials": "JD"
+      },
+      {
+        "id": 5,
+        "url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=600&auto=format&fit=crop",
+        "category": "Foundation",
+        "title": "Critical Weld Inspection - Sector 7",
+        "date": "Oct 19, 2023 • 04:45 PM",
+        "uploader": "Kevin Lee",
+        "uploaderRole": "QC",
+        "uploaderInitials": "KL"
+      },
+      {
+        "id": 6,
+        "url": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop",
+        "category": "Finishing",
+        "title": "Exterior Cladding Sample Mockup",
+        "date": "Oct 18, 2023 • 01:20 PM",
+        "uploader": "Mike Smith",
+        "uploaderRole": "Site Eng",
+        "uploaderInitials": "MS"
+      }
+    ],
+    "stats": {
+      "totalPhotos": "1,248",
+      "newUploads": 14,
+      "lastUpdate": "24.10.23 / 10:45"
+    }
+  }
 }

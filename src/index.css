@@ -1,21 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-display bg-slate-50 text-slate-900 antialiased;
+  }
+}
 @media print {
   /* Hide anything with the 'print:hidden' class */
   .print\:hidden {
     display: none !important;
   }
-  
+
   /* Reset background colors to save ink */
-  body, #root {
+  body,
+  #root {
     background-color: white;
     height: auto;
     width: 100%;
     margin: 0;
     padding: 0;
   }
-  
+
   /* Allow the report to fill the paper */
   main {
     padding: 0;

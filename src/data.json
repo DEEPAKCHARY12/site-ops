@@ -1,0 +1,106 @@
+{
+  "projectInfo": {
+    "name": "Grand Central Terminal",
+    "phase": "Expansion Phase II: Sector 4G",
+    "reportId": "#SR-20231024-B",
+    "date": "October 24, 2023"
+  },
+  "stats": [
+    {
+      "label": "Labor Strength",
+      "value": 38,
+      "subtext": "Personnel Active",
+      "type": "labor"
+    },
+    {
+      "label": "Reported Incidents",
+      "value": 0,
+      "subtext": "Safety Compliance",
+      "type": "safety"
+    },
+    {
+      "label": "Weather Condition",
+      "value": "22°C Clear",
+      "subtext": "",
+      "type": "weather"
+    }
+  ],
+  "labor": [
+    {
+      "category": "Senior Mason & Foreman",
+      "skillLevel": "High",
+      "count": 12,
+      "dailyCost": 9600
+    },
+    {
+      "category": "General Helpers",
+      "skillLevel": "Entry",
+      "count": 20,
+      "dailyCost": 9000
+    },
+    {
+      "category": "Electricians & Plumbers",
+      "skillLevel": "Specialized",
+      "count": 6,
+      "dailyCost": 5700
+    }
+  ],
+  "inventory": [
+    {
+      "material": "Cement (OPC)",
+      "inStock": "1,240 Bags"
+    },
+    {
+      "material": "Reinforcement Steel",
+      "inStock": "4.2 Tons"
+    },
+    {
+      "material": "Bricks (Grade A)",
+      "inStock": "18,500 Units"
+    }
+  ],
+  "alerts": [
+    {
+      "type": "critical",
+      "title": "CRITICAL SHORTAGE",
+      "message": "Sand (Coarse) level at 12%. Immediate re-order required for slab casting."
+    },
+    {
+      "type": "warning",
+      "title": "LOW STOCK ALERT",
+      "message": "Curing membrane spray supply falling below safety threshold (3 days remaining)."
+    }
+  ],
+  "workers": [
+    {
+      "id": "W-8821",
+      "name": "John Anderson",
+      "role": "Senior Mason",
+      "wage": 800,
+      "status": "present",
+      "image": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&auto=format&fit=crop"
+    },
+    {
+      "id": "W-4412",
+      "name": "Marcus Smith",
+      "role": "Helper",
+      "wage": 450,
+      "status": "half-day",
+      "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop"
+    },
+    {
+      "id": "W-1092",
+      "name": "David Wilson",
+      "role": "Electrician",
+      "wage": 950,
+      "status": "absent",
+      "image": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=100&auto=format&fit=crop"
+    }
+  ],
+  "laborStats": {
+    "active": 38,
+    "totalCost": 26825,
+    "present": 32,
+    "halfDay": 6
+  }
+}

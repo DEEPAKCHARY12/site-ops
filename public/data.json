@@ -1,0 +1,17 @@
+{
+  "projectDetails": {
+    "name": "Skyline Heights - Block A",
+    "location": { "lat": 17.3850, "lng": 78.4867 },
+    "weather": "Sunny"
+  },
+  "materials": [
+    { "id": 1, "name": "Cement (50kg)", "quantity": 45, "minLevel": 10, "unit": "Bags" },
+    { "id": 2, "name": "Steel (16mm)", "quantity": 8, "minLevel": 20, "unit": "Tons" },
+    { "id": 3, "name": "Sand", "quantity": 12, "minLevel": 15, "unit": "Trucks" }
+  ],
+  "workers": [
+    { "id": 101, "name": "Raju K.", "role": "Mason", "wage": 900 },
+    { "id": 102, "name": "Suresh B.", "role": "Helper", "wage": 600 }
+  ],
+  "gallery": []
+}

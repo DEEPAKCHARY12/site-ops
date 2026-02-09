@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@media print {
+  /* Hide anything with the 'print:hidden' class */
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  /* Reset background colors to save ink */
+  body, #root {
+    background-color: white;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Allow the report to fill the paper */
+  main {
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+  }
+}

@@ -13,6 +13,8 @@ export default {
         "attendance-half": "#d97706",
         "attendance-absent": "#dc2626",
         "danger": "#dc2626",
+        "background-light": "#f6f7f8",
+        "background-dark": "#101922",
       },
       fontFamily: {
         "display": ["Inter", "sans-serif"]

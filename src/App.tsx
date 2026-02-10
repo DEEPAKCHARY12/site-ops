@@ -1,3 +1,4 @@
+import Inventory from './pages/Inventory';
 import Labor from './pages/Labor';
 import Reports from './pages/Reports';
 import Gallery from './pages/Gallery';
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path="inventory" element={<div>Inventory Module (Intern 1)</div>} />
+          <Route path="inventory" element={<Inventory />} />
           <Route path="labor" element={<Labor />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="reports" element={<Reports />} />

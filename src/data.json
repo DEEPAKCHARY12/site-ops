@@ -172,5 +172,133 @@
       "newUploads": 14,
       "lastUpdate": "24.10.23 / 10:45"
     }
+  },
+  "inventoryData": {
+    "stats": [
+      {
+        "label": "Total Materials",
+        "value": "1,482",
+        "subtext": "+4 this week",
+        "trend": "up",
+        "icon": "view_list",
+        "color": "primary"
+      },
+      {
+        "label": "Low Stock Alerts",
+        "value": "12",
+        "subtext": "Requires Immediate Action",
+        "trend": "neutral",
+        "icon": "warning",
+        "color": "red"
+      },
+      {
+        "label": "Pending Requests",
+        "value": "08",
+        "subtext": "4 awaiting supervisor approval",
+        "trend": "neutral",
+        "icon": "schedule",
+        "color": "amber"
+      },
+      {
+        "label": "Monthly Usage",
+        "value": "$42.5k",
+        "subtext": "Under budget by 12%",
+        "trend": "neutral",
+        "icon": "bar_chart",
+        "color": "slate"
+      }
+    ],
+    "items": [
+      {
+        "id": "CAT-STEEL-12MM",
+        "name": "Grade A Rebar (12mm)",
+        "code": "CAT-STEEL-12MM",
+        "quantity": 450,
+        "unit": "kg",
+        "threshold": 1000,
+        "status": "low",
+        "po": "PO-9921",
+        "lastReceipt": "Oct 12, 2023"
+      },
+      {
+        "id": "CAT-CONC-PC01",
+        "name": "Portland Cement (Type I)",
+        "code": "CAT-CONC-PC01",
+        "quantity": 2400,
+        "unit": "Bags",
+        "threshold": 500,
+        "status": "in-stock",
+        "po": "PO-9945",
+        "lastReceipt": "Oct 15, 2023"
+      },
+      {
+        "id": "CAT-LUMB-C16",
+        "name": "C16 Structural Timber",
+        "code": "CAT-LUMB-C16",
+        "quantity": 12,
+        "unit": "m³",
+        "threshold": 25,
+        "status": "low",
+        "po": "PO-9812",
+        "lastReceipt": "Sep 28, 2023"
+      },
+      {
+        "id": "CAT-ELEC-PVC25",
+        "name": "PVC Conduit (25mm)",
+        "code": "CAT-ELEC-PVC25",
+        "quantity": 500,
+        "unit": "m",
+        "threshold": 100,
+        "status": "in-stock",
+        "po": "PO-9930",
+        "lastReceipt": "Oct 10, 2023"
+      },
+      {
+        "id": "CAT-CONC-RM35",
+        "name": "Ready-Mix Concrete (C35)",
+        "code": "CAT-CONC-RM35",
+        "quantity": 45,
+        "unit": "m³",
+        "threshold": 10,
+        "status": "in-stock",
+        "po": "PO-9918",
+        "lastReceipt": "Oct 08, 2023"
+      }
+    ],
+    "recentActivity": [
+      {
+        "id": 1,
+        "user": "Alex Rivera",
+        "action": "consumed 50kg of",
+        "item": "Grade A Rebar",
+        "time": "2 hours ago",
+        "location": "Project Area B",
+        "type": "consumption"
+      },
+      {
+        "id": 2,
+        "user": "Batch Arrival",
+        "action": "500 bags of Portland Cement received",
+        "item": "",
+        "time": "5 hours ago",
+        "location": "Warehouse 1",
+        "type": "arrival"
+      },
+      {
+        "id": 3,
+        "user": "Procurement Office",
+        "action": "generated for",
+        "item": "Structural Steel I-Beams",
+        "time": "Yesterday",
+        "location": "Procurement Office",
+        "type": "po",
+        "poNumber": "PO-9945"
+      }
+    ],
+    "stockForecast": {
+      "message": "Based on current concrete pouring schedule, Ready-Mix C35 will drop below threshold in 3 days. Recommendation: Expedite PO-9918.",
+      "item": "Ready-Mix C35",
+      "po": "PO-9918"
+    }
   }
 }

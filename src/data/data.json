@@ -1,0 +1,87 @@
+{
+    "user": {
+        "name": "Marcus Chen",
+        "role": "Site Supervisor",
+        "site": "Site B: Skyline Heights",
+        "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBYpNRc_12uw2tBfgIkWW75KyCJ4z9LoLTFHsQBopZhA1irJkqJytFvObM8YoV4Qfd2hHH-BJzbYfJqPp0oDdGTG2gofNJeO3K7jblyruOwElfs-oPB8RQxo_H_zIC4AiN0emCN9yHRxDzmKeKLWyBP1f185o1pHkK4spzCeUwL85PvWcH7DQTnFnSTM86qzOMiH5K6Yjg20A187Wn0Ky043lEzzv1AS_aMcUPYeMZwSxh1RrhNTpT16zkzRze3QOa2sYbBa8TEAAJN"
+    },
+    "siteOverview": {
+        "image": "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        "craneStatus": "Operational",
+        "craneName": "Main Tower Crane A"
+    },
+    "metrics": {
+        "workers": {
+            "count": 124,
+            "label": "on-site",
+            "trend": "+12% vs avg",
+            "trendType": "positive",
+            "subtitle": "Across all development sectors"
+        },
+        "criticalStock": {
+            "count": 4,
+            "label": "Items Low",
+            "status": "Urgent",
+            "subtitle": "Rebar and Cement below threshold"
+        },
+        "project": {
+            "deadline": "Oct 15, 2024",
+            "remaining": "45 Days Remaining",
+            "progress": 65
+        }
+    },
+    "weather": {
+        "temp": "28°C",
+        "condition": "Sunny Skies",
+        "windSpeed": "12 km/h",
+        "humidity": "45%"
+    },
+    "timeline": [
+        {
+            "time": "08:00 AM",
+            "description": "Daily briefing completed. Sector 4 concrete pour initiated.",
+            "status": "completed"
+        },
+        {
+            "time": "10:30 AM",
+            "description": "Steel delivery received. Quality inspection in progress.",
+            "status": "completed"
+        },
+        {
+            "time": "CURRENT",
+            "description": "Structural reinforcement ongoing in Tower 2 Level 4.",
+            "status": "current"
+        }
+    ],
+    "inventory": [
+        {
+            "name": "Reinforcement Steel (T12)",
+            "stock": "14.5 Tons",
+            "status": "Critical",
+            "statusColor": "red",
+            "lastDelivery": "2 days ago",
+            "icon": "grid_view"
+        },
+        {
+            "name": "Portland Cement (Grade 43)",
+            "stock": "240 Bags",
+            "status": "Low Stock",
+            "statusColor": "amber",
+            "lastDelivery": "4 days ago",
+            "icon": "layers"
+        },
+        {
+            "name": "Fuel (Diesel)",
+            "stock": "1,200 Liters",
+            "status": "Healthy",
+            "statusColor": "emerald",
+            "lastDelivery": "Today",
+            "icon": "water_drop"
+        }
+    ],
+    "crew": {
+        "total": 124,
+        "fullDay": 82,
+        "halfDay": 42
+    }
+}

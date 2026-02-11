@@ -8,7 +8,9 @@ export default {
     extend: {
       colors: {
         "primary": "#2563eb",
-        "navy-dark": "#0f172a",
+        "navy-dark": "#0B1120",
+        "navy-900": "#111827",
+        "navy-800": "#1F2937",
         "attendance-present": "#2563eb",
         "attendance-half": "#d97706",
         "attendance-absent": "#dc2626",
@@ -17,7 +19,8 @@ export default {
         "background-dark": "#101922",
       },
       fontFamily: {
-        "display": ["Inter", "sans-serif"]
+        "display": ["Inter", "sans-serif"],
+        "sans": ["Inter", "sans-serif"]
       },
     },
   },

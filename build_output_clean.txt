@@ -1,0 +1,2 @@
+src/components/inventory/InventoryFeed.tsx(1,33): error TS6133: 'ExternalLink' is declared but its value is never read.
+src/pages/Gallery.tsx(1,18): error TS6133: 'MapPin' is declared but its value is never read.

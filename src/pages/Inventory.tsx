@@ -3,7 +3,7 @@ import InventoryHeader from '../components/inventory/InventoryHeader';
 import InventoryStats from '../components/inventory/InventoryStats';
 import InventoryTable from '../components/inventory/InventoryTable';
 import InventoryFeed from '../components/inventory/InventoryFeed';
-import { inventoryApi, activityApi } from '../utils/api';
+import { inventoryApi, activityApi, projectApi } from '../utils/api';
 
 export default function Inventory() {
   const [items, setItems] = useState<any[]>([]);
@@ -20,6 +20,7 @@ export default function Inventory() {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
   const [total, setTotal] = useState(0);
+  const [currentProject, setCurrentProject] = useState<any>(null);
 
   const fetchData = useCallback(async () => {
     try {
@@ -41,6 +42,11 @@ export default function Inventory() {
 
       setItems(inventoryRes.data.items);
       setTotal(inventoryRes.data.total);
+      
+      const [projectsRes] = await Promise.all([projectApi.getProjects()]);
+      if (!currentProject && projectsRes.data.length > 0) {
+        setCurrentProject(projectsRes.data[0]);
+      }
 
       const backendStats = statsRes.data;
       const formattedStats = [
@@ -104,6 +110,8 @@ export default function Inventory() {
       <InventoryHeader
         onMaterialAdded={fetchData}
         onSearch={setSearch}
+        currentProject={currentProject}
+        onProjectChange={setCurrentProject}
       />
       <div className="flex-1 overflow-y-auto p-8 space-y-6">
         <InventoryStats stats={stats} />

@@ -38,25 +38,25 @@ def seed_db():
 
     # Material names by category
     material_names = {
-        "Structural Steel": ["Grade A Rebar (12mm)", "I-Beam (S235JR)", "Steel Mesh (Sector 7)", "Angle Iron (50x50)", "UPC Channel"],
-        "Concrete": ["Portland Cement (Type I)", "Ready-Mix Concrete (C35)", "Self-Leveling Screed", "Rapid Set Patching", "Expanding Grout"],
-        "Lumber": ["C16 Structural Timber", "Plywood (18mm)", "OSB/3 Board", "Softwood Joists", "Scaffold Boards"],
-        "Electrical": ["PVC Conduit (25mm)", "Copper Wire (2.5mm)", "Circuit Breakers (32A)", "Junction Boxes", "LED Site Lights"],
-        "Plumbing": ["Copper Pipe (15mm)", "PVC Drainage Pipe", "Bib Taps (Brass)", "Stopcocks", "Pipe Insulation"],
-        "Fasteners": ["M12 Bolts (100mm)", "Self-Tapping Screws", "Nylon Wall Plugs", "Chemical Anchors", "Washers (M12)"],
-        "Safety Gear": ["Hard Hats (BSI)", "Hi-Vis Vests", "Safety Boots (S3)", "Fall Arrest Harness", "Dust Masks (FFP3)"]
+        "Structural Steel": ["Grade A Rebar (12mm)", "I-Beam (S235JR)", "Steel Mesh (Sector 7)", "Angle Iron (50x50)", "UPC Channel", "H-Beam (HEB 200)", "Binding Wire (16G)", "Steel Base Plate"],
+        "Concrete": ["Portland Cement (Type I)", "Ready-Mix Concrete (C35)", "Self-Leveling Screed", "Rapid Set Patching", "Expanding Grout", "Concrete Finishing Wax", "Slab Curing Agent", "Polymer Fibers"],
+        "Lumber": ["C16 Structural Timber", "Plywood (18mm)", "OSB/3 Board", "Softwood Joists", "Scaffold Boards", "Hardwood Cladding", "Roof Battens", "Shuttering Plywood"],
+        "Electrical": ["PVC Conduit (25mm)", "Copper Wire (2.5mm)", "Circuit Breakers (32A)", "Junction Boxes", "LED Site Lights", "Distribution Board", "Steel Conduit (20mm)", "Cable Trays"],
+        "Plumbing": ["Copper Pipe (15mm)", "PVC Drainage Pipe", "Bib Taps (Brass)", "Stopcocks", "Pipe Insulation", "Water Storage Tank", "Submersible Pump", "Cast Iron Pipe"],
+        "Fasteners": ["M12 Bolts (100mm)", "Self-Tapping Screws", "Nylon Wall Plugs", "Chemical Anchors", "Washers (M12)", "Expansion Bolts", "Concrete Nails", "Threaded Rods"],
+        "Safety Gear": ["Hard Hats (BSI)", "Hi-Vis Vests", "Safety Boots (S3)", "Fall Arrest Harness", "Dust Masks (FFP3)", "Ear Defenders", "Safety Goggles", "First Aid Kit"]
     }
 
     materials = []
     for cat in categories:
-        for i in range(8):  # 7 categories * 8 items = 56 total
-            name_base = random.choice(material_names[cat])
-            name = f"{name_base} (Batch {i+1})"
-            code = f"CAT-{cat[:4].upper()}-{i+1000}"
+        for i in range(10):  # 7 categories * 10 items = 70 total
+            name_base = material_names[cat][i % len(material_names[cat])]
+            name = f"{name_base} (Lot {i+101})"
+            code = f"CAT-{cat[:4].upper()}-{i+2000}"
             quantity = random.randint(5, 5000)
             threshold = random.randint(50, 1500)
             
-            # Ensure some are low stock
+            # Ensure at least 12 items are low stock (as requested by frontend stats)
             if i < 2:
                 quantity = random.randint(5, threshold - 1)
             
@@ -68,7 +68,7 @@ def seed_db():
                 unit=units[cat],
                 threshold=threshold,
                 po=f"PO-{random.randint(9000, 9999)}",
-                last_receipt=(datetime.now() - timedelta(days=random.randint(1, 30))).strftime("%b %d, 2023")
+                last_receipt=(datetime.now() - timedelta(days=random.randint(1, 45))).strftime("%b %d, 2023")
             ))
     db.add_all(materials)
 

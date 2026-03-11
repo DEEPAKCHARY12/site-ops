@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, desc, asc
 from . import models, schemas
+import random
 import csv
 import io
 
@@ -92,15 +93,51 @@ def create_activity(db: Session, activity: schemas.ActivityCreate):
     db.refresh(db_activity)
     return db_activity
 
+def delete_material(db: Session, item_id: int):
+    db_material = db.query(models.Material).filter(models.Material.id == item_id).first()
+    if db_material:
+        db.delete(db_material)
+        db.commit()
+    return db_material
+
+def create_transaction(db: Session, item_id: int, transaction: schemas.TransactionCreate):
+    db_material = db.query(models.Material).filter(models.Material.id == item_id).first()
+    if not db_material:
+        return None
+    
+    adjustment = transaction.quantity
+    if transaction.action == "consume":
+        adjustment = -abs(adjustment)
+    else:
+        adjustment = abs(adjustment)
+        
+    db_material.quantity += adjustment
+    db.commit()
+    db.refresh(db_material)
+    
+    # Create single activity entry for the bulk transaction
+    action_text = "consumed" if transaction.action == "consume" else "added"
+    activity = schemas.ActivityCreate(
+        user="User",
+        action=f"{action_text} {abs(adjustment)} {db_material.unit} of",
+        item=db_material.name,
+        location="Project Area B",
+        type="consumption" if transaction.action == "consume" else "arrival"
+    )
+    create_activity(db=db, activity=activity)
+    
+    return db_material
+
 # Stats
 def get_inventory_stats(db: Session):
     total_materials = db.query(models.Material).count()
     low_stock_alerts = db.query(models.Material).filter(models.Material.quantity < models.Material.threshold).count()
+    # Mocking some values for now as per original
     return schemas.InventoryStats(
         total_materials=total_materials,
         low_stock_alerts=low_stock_alerts,
-        pending_requests=8,
-        monthly_usage="$42.5k"
+        pending_requests=random.randint(5, 15),
+        monthly_usage=f"${random.randint(30, 60)}k"
     )
 
 # Projects

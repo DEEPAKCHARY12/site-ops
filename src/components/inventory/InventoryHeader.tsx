@@ -5,11 +5,12 @@ import { inventoryApi, projectApi, notificationApi } from '../../utils/api';
 interface InventoryHeaderProps {
   onMaterialAdded: () => void;
   onSearch: (query: string) => void;
+  currentProject: any;
+  onProjectChange: (project: any) => void;
 }
 
-export default function InventoryHeader({ onMaterialAdded, onSearch }: InventoryHeaderProps) {
+export default function InventoryHeader({ onMaterialAdded, onSearch, currentProject, onProjectChange }: InventoryHeaderProps) {
   const [projects, setProjects] = useState<any[]>([]);
-  const [currentProject, setCurrentProject] = useState<any>(null);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProjectSelector, setShowProjectSelector] = useState(false);
@@ -26,7 +27,6 @@ export default function InventoryHeader({ onMaterialAdded, onSearch }: Inventory
           notificationApi.getNotifications()
         ]);
         setProjects(projectsRes.data);
-        if (projectsRes.data.length > 0) setCurrentProject(projectsRes.data[0]);
         setNotifications(notificationsRes.data);
       } catch (error) {
         console.error("Error initializing header data:", error);
@@ -98,7 +98,7 @@ export default function InventoryHeader({ onMaterialAdded, onSearch }: Inventory
               {projects.map(p => (
                 <button
                   key={p.id}
-                  onClick={() => { setCurrentProject(p); setShowProjectSelector(false); }}
+                  onClick={() => { onProjectChange(p); setShowProjectSelector(false); }}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${currentProject?.id === p.id ? 'bg-primary/10 text-primary font-bold' : 'hover:bg-slate-50 text-slate-600'}`}
                 >
                   {p.name}

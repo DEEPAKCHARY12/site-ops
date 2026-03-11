@@ -13,9 +13,14 @@ export const inventoryApi = {
     getInventory: (params?: any) => api.get('/api/inventory', { params }),
     getStats: () => api.get('/api/inventory/stats'),
     createMaterial: (data: any) => api.post('/api/inventory', data),
-    adjustQuantity: (itemId: number, adjustment: number) =>
-        api.put(`/api/inventory/${itemId}/adjust`, null, { params: { adjustment } }),
+    createTransaction: (itemId: number, data: { action: 'add' | 'consume', quantity: number }) =>
+        api.post(`/api/inventory/${itemId}/transaction`, data),
+    deleteMaterial: (itemId: number) => api.delete(`/api/inventory/${itemId}`),
     exportCsv: () => api.get('/api/inventory/export', { responseType: 'blob' }),
+};
+
+export const devApi = {
+    resetDatabase: () => api.post('/api/dev/reset-db'),
 };
 
 export const activityApi = {

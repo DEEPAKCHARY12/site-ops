@@ -91,23 +91,28 @@ def create_material(material: schemas.MaterialCreate, db: Session = Depends(get_
     
     return new_material
 
-@app.put("/api/inventory/{item_id}/adjust", response_model=schemas.Material)
-def adjust_material(item_id: int, adjustment: int, db: Session = Depends(get_db)):
-    db_material = crud.adjust_material_quantity(db, item_id=item_id, adjustment=adjustment)
+@app.delete("/api/inventory/{item_id}")
+def delete_material(item_id: int, db: Session = Depends(get_db)):
+    db_material = crud.delete_material(db, item_id=item_id)
     if not db_material:
         raise HTTPException(status_code=404, detail="Material not found")
     
-    action_type = "consumed" if adjustment < 0 else "added"
-    abs_adj = abs(adjustment)
     activity = schemas.ActivityCreate(
-        user="User",
-        action=f"{action_type} {abs_adj} {db_material.unit} of",
+        user="Admin",
+        action=f"deleted material: {db_material.name}",
         item=db_material.name,
-        location="Project Area B",
-        type="consumption" if adjustment < 0 else "arrival"
+        location="Warehouse 1",
+        type="consumption"
     )
     crud.create_activity(db=db, activity=activity)
+    
+    return {"message": "Material deleted successfully"}
 
+@app.post("/api/inventory/{item_id}/transaction", response_model=schemas.Material)
+def create_transaction(item_id: int, transaction: schemas.TransactionCreate, db: Session = Depends(get_db)):
+    db_material = crud.create_transaction(db, item_id=item_id, transaction=transaction)
+    if not db_material:
+        raise HTTPException(status_code=404, detail="Material not found")
     return db_material
 
 @app.get("/api/inventory/export")

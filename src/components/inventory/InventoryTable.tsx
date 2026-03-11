@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight, Download, Plus, Minus, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download, Plus, Minus, ArrowUpDown, ArrowUp, ArrowDown, Trash2, Check, X } from 'lucide-react';
+import { useState } from 'react';
 import { useInteractionTracking } from '../../hooks/useInteractionTracking';
 import { inventoryApi } from '../../utils/api';
 
@@ -38,14 +39,34 @@ export default function InventoryTable({
   currentSort
 }: InventoryTableProps) {
   const { trackInteraction } = useInteractionTracking();
+  const [adjustingId, setAdjustingId] = useState<number | null>(null);
+  const [adjustAction, setAdjustAction] = useState<'add' | 'consume' | null>(null);
+  const [adjustValue, setAdjustValue] = useState<string>('');
 
-  const handleAdjust = async (id: number, adjustment: number, name: string) => {
+  const handleTransaction = async (id: number, name: string) => {
+    const qty = parseInt(adjustValue);
+    if (isNaN(qty) || qty <= 0 || !adjustAction) return;
+
     try {
-      await inventoryApi.adjustQuantity(id, adjustment);
-      trackInteraction(`${adjustment > 0 ? 'add' : 'minus'}-button-${id}`, 'click', { itemName: name, adjustment });
+      await inventoryApi.createTransaction(id, { action: adjustAction, quantity: qty });
+      trackInteraction(`${adjustAction}-bulk-${id}`, 'click', { itemName: name, quantity: qty });
+      setAdjustingId(null);
+      setAdjustValue('');
       onUpdate();
     } catch (error) {
-      console.error("Error adjusting quantity:", error);
+      console.error("Error executing transaction:", error);
+    }
+  };
+
+  const handleDelete = async (id: number, name: string) => {
+    if (!window.confirm(`Are you sure you want to permanently delete "${name}"? This action cannot be undone.`)) return;
+
+    try {
+      await inventoryApi.deleteMaterial(id);
+      trackInteraction(`delete-material-${id}`, 'click', { itemName: name });
+      onUpdate();
+    } catch (error) {
+      console.error("Error deleting material:", error);
     }
   };
 
@@ -183,20 +204,56 @@ export default function InventoryTable({
                   <td className="px-6 py-4 text-slate-500 font-medium">{item.last_receipt}</td>
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-2">
-                      <button
-                        title="Increase Quantity"
-                        className="size-8 flex items-center justify-center bg-white border border-slate-200 rounded-lg text-primary hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm active:scale-90"
-                        onClick={() => handleAdjust(item.id, 1, item.name)}
-                      >
-                        <Plus size={16} />
-                      </button>
-                      <button
-                        title="Decrease Quantity"
-                        className="size-8 flex items-center justify-center bg-white border border-slate-200 rounded-lg text-slate-600 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all shadow-sm active:scale-90"
-                        onClick={() => handleAdjust(item.id, -1, item.name)}
-                      >
-                        <Minus size={16} />
-                      </button>
+                      {adjustingId === item.id ? (
+                        <div className="flex items-center gap-1 animate-in zoom-in-95 duration-200">
+                          <input
+                            autoFocus
+                            type="number"
+                            value={adjustValue}
+                            onChange={(e) => setAdjustValue(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleTransaction(item.id, item.name)}
+                            placeholder="Qty"
+                            className="w-16 px-2 py-1 text-xs border border-primary rounded outline-none ring-1 ring-primary/20"
+                          />
+                          <button
+                            onClick={() => handleTransaction(item.id, item.name)}
+                            className="p-1 bg-primary text-white rounded hover:bg-blue-600 transition-colors"
+                          >
+                            <Check size={14} />
+                          </button>
+                          <button
+                            onClick={() => { setAdjustingId(null); setAdjustValue(''); }}
+                            className="p-1 bg-slate-100 text-slate-500 rounded hover:bg-slate-200 transition-colors"
+                          >
+                            <X size={14} />
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          <button
+                            title="Add Quantity"
+                            className="size-8 flex items-center justify-center bg-white border border-slate-200 rounded-lg text-primary hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm active:scale-90"
+                            onClick={() => { setAdjustingId(item.id); setAdjustAction('add'); setAdjustValue(''); }}
+                          >
+                            <Plus size={16} />
+                          </button>
+                          <button
+                            title="Consume Quantity"
+                            className="size-8 flex items-center justify-center bg-white border border-slate-200 rounded-lg text-slate-600 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all shadow-sm active:scale-90"
+                            onClick={() => { setAdjustingId(item.id); setAdjustAction('consume'); setAdjustValue(''); }}
+                          >
+                            <Minus size={16} />
+                          </button>
+                          <div className="w-px h-4 bg-slate-200 my-auto mx-1"></div>
+                          <button
+                            title="Delete Material"
+                            className="size-8 flex items-center justify-center bg-white border border-slate-200 rounded-lg text-slate-400 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all shadow-sm active:scale-90"
+                            onClick={() => handleDelete(item.id, item.name)}
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>

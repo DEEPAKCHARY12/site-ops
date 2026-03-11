@@ -33,6 +33,10 @@ class MaterialCreate(MaterialBase):
 class MaterialUpdate(BaseModel):
     quantity: Optional[int] = None
 
+class TransactionCreate(BaseModel):
+    action: str  # "add" | "consume"
+    quantity: int
+
 class Material(MaterialBase):
     id: int
 

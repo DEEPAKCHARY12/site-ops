@@ -7,10 +7,23 @@ import math
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine, get_db
+from .routers import labor, dashboard, gallery, reports
+from fastapi.staticfiles import StaticFiles
+import os
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Mount static files for uploads
+UPLOAD_DIR = "backend/static/uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+app.mount("/static/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+
+app.include_router(labor.router)
+app.include_router(dashboard.router)
+app.include_router(gallery.router)
+app.include_router(reports.router)
 
 # Configure CORS
 origins = [

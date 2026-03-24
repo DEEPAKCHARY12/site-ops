@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python & FastAPI
+backend/venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Database
+interactions.db
+*.sqlite3
+*.db
+
+# Temp files
+tmp/

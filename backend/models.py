@@ -53,3 +53,49 @@ class Notification(Base):
     timestamp = Column(DateTime, default=datetime.utcnow)
     type = Column(String) # info, warning, critical
     is_read = Column(Boolean, default=False)
+
+class Worker(Base):
+    __tablename__ = "workers"
+
+    id = Column(Integer, primary_key=True, index=True)
+    worker_id_string = Column(String, unique=True, index=True)
+    name = Column(String, index=True)
+    classification = Column(String) # Senior Mason, Helper, etc.
+    base_wage = Column(Integer)
+
+class AttendanceLog(Base):
+    __tablename__ = "attendance_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    worker_id = Column(Integer)
+    date = Column(String, index=True) # YYYY-MM-DD
+    status = Column(String) # PRESENT, HALF, ABSENT
+    effective_pay = Column(Integer)
+
+class DailyEntry(Base):
+    __tablename__ = "daily_entries"
+
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(String, unique=True, index=True) # YYYY-MM-DD
+    status = Column(String, default="OPEN") # OPEN, FINALIZED
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+class SyncLog(Base):
+    __tablename__ = "sync_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(String, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    details = Column(String)
+
+class GalleryItem(Base):
+    __tablename__ = "gallery_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    photo_url = Column(String)
+    site_phase = Column(String, index=True) # Foundation, Finishing, General
+    photo_category = Column(String) # For display label
+    title = Column(String)
+    uploader_name = Column(String)
+    uploader_role = Column(String)
+    upload_timestamp = Column(DateTime, default=datetime.utcnow)

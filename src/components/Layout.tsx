@@ -15,7 +15,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex">
       {/* Sidebar - Fixed */}
-      <aside className="no-print w-60 bg-navy-dark text-white flex-shrink-0 flex flex-col fixed h-full z-50">
+      <aside className="print:hidden w-60 bg-navy-dark text-white flex-shrink-0 flex flex-col fixed h-full z-50">
         <div className="p-5 flex items-center gap-3 border-b border-slate-800">
           <Building className="text-primary" size={24} strokeWidth={2.5} />
           <h1 className="text-lg font-black tracking-tighter uppercase">SiteOps</h1>
@@ -55,7 +55,7 @@ export default function Layout() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-60 min-h-screen bg-white">
+      <main className="flex-1 ml-60 print:ml-0 min-h-screen bg-white print:bg-transparent">
         {/* Render child pages (Dashboard, etc.) */}
         <Outlet />
       </main>
